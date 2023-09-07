@@ -222,20 +222,160 @@ function someRecursive(arr, callback){
     return true;
   }
 
-// function flatten(arr){
-//     const flatArr = (arr) => {
-//         if(typeof arr[0] === 'number') return arr;
-//         console.log(arr, 'sss');
-//         return flatArr(arr.flat());
-//     };
-//     return arr.map((item)=>flatArr(item).flat())[0];
-//   }
+function flatten(arr){
+    let newArr = [];
+    arr.forEach((item)=>{
+        if(Array.isArray(item)){
+            newArr =  newArr.concat(flatten(item));
+        } else {
+            newArr.push(item);
+        }
+    });
 
-//   const res = flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]);
+    return newArr;
+  }
 
-//   console.log(res);
+  const flattenArr = flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]);
+
+
+function capitalizeFirst (arr) {
+    const newArr = [];
+
+    const capitalizeRecursion = (arr, copy) => {
+        if(!arr.length) return copy;
+        copy.push(arr[0][0].toUpperCase() + arr[0].slice(1));
+        return capitalizeRecursion(arr.slice(1), copy);
+    };
+
+    return capitalizeRecursion(arr,newArr);
+  }
   
-//   flatten([1, 2, 3, [4, 5] ]) // [1, 2, 3, 4, 5]
-//   flatten([1, [2, [3, 4], [[5]]]]) // [1, 2, 3, 4, 5]
-//   flatten([[1],[2],[3]]) // [1,2,3]
-//   flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]]) // [1,2,3
+  const capitalize = capitalizeFirst(['car','taco','banana']); // ['Car','Taco','Banana']
+
+
+
+  function nestedEvenSum (obj) {
+    let num = 0;
+    const sumRecursion = (obj)=> {
+        for (const [_, value] of Object.entries(obj)) {
+            if(typeof value === 'number'){
+                if(value % 2 === 0){
+                    console.log('teeest', num);
+                    num += value;
+                } 
+            } else if (typeof value === 'object'){
+                sumRecursion(value, num);
+            }
+        }
+        return num
+    }
+
+    return sumRecursion(obj, num);
+  }
+  
+  
+  var obj1 = {
+    outer: 2,
+    obj: {
+      inner: 2,
+      otherObj: {
+        superInner: 2,
+        notANumber: true,
+        alsoNotANumber: "yup"
+      }
+    }
+  }
+  
+  var obj2 = {
+    a: 2,
+    b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+    c: {c: {c: 2}, cc: 'ball', ccc: 5},
+    d: 1,
+    e: {e: {e: 2}, ee: 'car'}
+  };
+  
+  const nestedSum = nestedEvenSum(obj2); 
+
+
+function capitalizeWords (arr) {
+    const copy = [];
+    const recursionArr = (arr) => {
+        if(!arr.length) return copy;
+        copy.push(arr[0].toUpperCase());
+        return recursionArr(arr.slice(1));
+    }
+
+    return recursionArr(arr)
+  }
+  
+  let words = ['i', 'am', 'learning', 'recursion'];
+  const capitalizeWordArr = capitalizeWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
+
+
+const stringifyNumbers = (obj) => {
+    const stringifyRecursion = (objItem)=> {
+        let bb = {};
+        for (const [key, value] of Object.entries(objItem)) {
+            if(typeof value === 'number') {
+                bb[key] = value.toString();
+            } else if(typeof value === "object" && !Array.isArray(value)) {
+                bb[key] =  stringifyRecursion(value);
+            }else {
+                bb[key] = value;
+            }
+        }
+
+        return bb;
+    }
+    
+    return  stringifyRecursion(obj);
+};
+
+let obj = {
+    num: 1,
+    test: [],
+    data: {
+        val: 4,
+        info: {
+            isRight: true,
+            random: 66
+        }
+    }
+}
+
+const stringifyNum = stringifyNumbers(obj);
+
+
+const collectStrings = (strObj) => {
+    let bb = [];
+        const stringifyRecursion = (objItem)=> {
+        for (const [key, value] of Object.entries(objItem)) {
+            if(typeof value === "object") {
+                stringifyRecursion(value);
+            }else if(typeof value === 'string') {
+                bb.push(value);
+            }
+        }
+    }
+
+    stringifyRecursion(strObj);
+    return bb;
+};
+
+const strObj = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+const collectStr = collectStrings(strObj); // ["foo", "bar", "baz"])
