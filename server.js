@@ -379,3 +379,37 @@ const strObj = {
 }
 
 const collectStr = collectStrings(strObj); // ["foo", "bar", "baz"])
+
+
+function linearSearch(arr, value){
+    for (let i = 0; i < arr.length; i++) {
+        if(arr[i] === value) return i;
+        
+    }
+    return -1;
+  }
+
+const linearSearchValue = linearSearch([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 10) // 1
+linearSearch([9, 8, 7, 6, 5, 4, 3, 2, 1, 0], 4) // 5
+
+const binarySearch = (arr, value) => {
+    const middle = Math.floor(arr.length / 2);
+
+    const binarySearchRecursion = (index) => {
+        if(index > arr.length-1) return -1;
+        
+        if(arr[index] === value){
+            return index
+        } else if (arr[index] > value) {
+            const changedIndex = Math.floor(index / 2);
+            return binarySearchRecursion(changedIndex);
+        } else if ( arr[index] < value){
+            const changedIndex = Math.floor((arr.length - index) / 2 + index) + 1;
+            return binarySearchRecursion(changedIndex);
+        }
+    };
+
+    return binarySearchRecursion(middle);
+};
+
+const binarySearchValue = binarySearch([1,2,3,4,5],6) 
