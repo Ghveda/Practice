@@ -413,3 +413,43 @@ const binarySearch = (arr, value) => {
 };
 
 const binarySearchValue = binarySearch([1,2,3,4,5],6) 
+
+const selectionSort = (arr) => {
+    let sortedArr = [...arr];
+    let tempoVal;
+
+    for (let i = 0; i < arr.length; i++) {
+    let lowest = arr[i];
+        for (let j = i+1; j < arr.length; j++) {
+            if(lowest > arr[j]){
+                tempoVal = lowest;
+                lowest = arr[j];
+                arr[j] = tempoVal;
+            }
+        }
+        sortedArr[i] = lowest;
+    }
+    return sortedArr;
+};
+
+const selectionSortFunc = selectionSort([9, 8, 30, 6, 70, 4, 3, 2, 1, 0]);
+
+const bubbleSort = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+        let index = 0;
+        
+        while(index < arr.length){
+            let currentVal = arr[index]; 
+
+            if(arr[index] > arr[index + 1]){
+                arr[index] = arr[index + 1];
+                arr[index +1] = currentVal
+             }
+            index++;
+        }
+    }
+
+    return arr;
+};
+
+const insertionSortFunc = bubbleSort([9, 8, 30, 6, 70, 4, 3, 2, 1, 0]);
