@@ -35,11 +35,11 @@ class SinglyLinkedList {
     }
 
     pop() {
-
         if(!this.head) return undefined;
 
         let current = this.head;
         let newTail = current;
+
         while(current.next){
             newTail = current;
             current = current.next;
@@ -59,6 +59,7 @@ class SinglyLinkedList {
 
     shift() {
         if(!this.head) return undefined;
+
         const currentHead = this.head;
         this.head = currentHead.next;
 
@@ -89,19 +90,80 @@ class SinglyLinkedList {
 
         return this;
     }
+
+    get(index) {
+        if(index < 0 || index >= this.length) return null;
+        let counter = 0;
+        let current = this.head;
+
+        while(counter !== index){
+            current = current.next;
+            counter++;
+        }
+
+        return current;
+    }
+
+    set(value, index) {
+        let foundNode = this.get(index);
+
+        if(foundNode) {
+            foundNode.val = value;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    insert(value, index) {
+        if(index < 0 || index > this.length) return false;
+        if(index === this.length) return !!this.push(value);
+        if(index === 0) return !!this.unshift(value);
+
+        let previous = this.get(index - 1);
+        const newNode = new Node(value);
+        const temp = previous.next;
+
+        newNode.next = temp;
+        previous.next = newNode;
+
+        return true;
+    }
+
+    remove(index){
+        console.log(index);
+        if(index < 0 || index >= this.length) return undefined;
+        if(index === 0) return this.shift();
+        if(index === this.length-1) return this.pop();
+        
+        const current = this.get(index);
+        const prevous = this.get(index - 1);
+        prevous.next = current.next;
+        this.length--;
+
+        return current;
+    }
+
+    reverse() {
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        let next = null;
+        let prev = null;
+        
+        for (let i = 0; i < this.length; i++) {
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+
+        return this;
+    }
 }
 
 const list = new SinglyLinkedList();
-list.push('hello');
-list.push('World');
-list.push('!');
-
-list.shift();
-list.shift();
-
-list.unshift('some');
-
-
-
 
 module.exports = list;
