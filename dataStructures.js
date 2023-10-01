@@ -14,4 +14,13 @@ singlyLinkedList.insert('inserted-element', 1);
 singlyLinkedList.remove(1);
 singlyLinkedList.reverse();
 
-console.log(doubleLinkedList);
+// ! Use doubleLinkedList methods
+doubleLinkedList.push(1);
+doubleLinkedList.push(2);
+doubleLinkedList.push(3);
+doubleLinkedList.pop()
+doubleLinkedList.shift()
+doubleLinkedList.get(2);
+doubleLinkedList.set(0, 4)
+doubleLinkedList.insert(1,4);
+doubleLinkedList.remove(0);
