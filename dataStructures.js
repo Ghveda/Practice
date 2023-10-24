@@ -2,6 +2,8 @@ const singlyLinkedList = require('./DataSturcute/singlyLinkedList');
 const doubleLinkedList = require('./DataSturcute/doublyLinkedList');
 const stackInstance = require('./DataSturcute/stack');
 const queueInstance = require('./DataSturcute/queues');
+const binaryTreeInstance = require('./DataSturcute/binarySearchTree');
+
 // ! Use singlyLinkedList methods
 singlyLinkedList.push('1');
 singlyLinkedList.push('2');
@@ -36,3 +38,7 @@ queueInstance.unqueue(1);
 queueInstance.unqueue(2);
 queueInstance.unqueue(3);
 queueInstance.dequeue();
+
+// ! Use binaryTreeInstance methods
+binaryTreeInstance.insert(9);
+binaryTreeInstance.find(100);
