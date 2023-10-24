@@ -1,7 +1,7 @@
 const singlyLinkedList = require('./DataSturcute/singlyLinkedList');
 const doubleLinkedList = require('./DataSturcute/doublyLinkedList');
 const stackInstance = require('./DataSturcute/stack');
-
+const queueInstance = require('./DataSturcute/queues');
 // ! Use singlyLinkedList methods
 singlyLinkedList.push('1');
 singlyLinkedList.push('2');
@@ -29,3 +29,10 @@ doubleLinkedList.remove(0);
 stackInstance.push(1);
 stackInstance.push(2);
 stackInstance.pop();
+
+
+// ! Use queueInstance methods
+queueInstance.unqueue(1);
+queueInstance.unqueue(2);
+queueInstance.unqueue(3);
+queueInstance.dequeue();

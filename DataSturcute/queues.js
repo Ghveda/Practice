@@ -1,28 +1,27 @@
 const Node = require('../utils/node');
 
-class Stack {
+class Queue {
     constructor() {
         this.first = null;
         this.last = null;
         this.size = 0;
     }
 
-    push(val) {
+    unqueue(val) {
         const newNode = new Node(val);
 
-        if (!this.first) {
+        if (!this.size) {
             this.first = newNode;
             this.last = newNode;
         } else {
-            const temp = this.first;
-            this.first = newNode;
-            this.last = temp;
+            this.last.next = newNode
+            this.last = newNode;
         }
 
-        return ++this.size;
+        return this.size++;
     }
 
-    pop() {
+    dequeue() {
         if (!this.first) return null;
         const temp = this.first;
 
@@ -32,10 +31,11 @@ class Stack {
 
         this.first = this.first.next;
         this.size--;
+
         return temp.value;
     }
 }
 
-const stackInstance = new Stack();
+const queueInstance = new Queue();
 
-module.exports = stackInstance;
+module.exports = queueInstance;
