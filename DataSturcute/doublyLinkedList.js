@@ -1,5 +1,5 @@
 class Node {
-    constructor(val){
+    constructor(val) {
         this.val = val;
         this.next = null;
         this.prev = null;
@@ -7,7 +7,7 @@ class Node {
 }
 
 class DoubleLinkedList {
-    constructor(){
+    constructor() {
         this.head = null;
         this.tail = null;
         this.length = 0;
@@ -15,7 +15,7 @@ class DoubleLinkedList {
 
     push(val) {
         const newNode = new Node(val);
-        if(!this.head){
+        if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
         } else {
@@ -23,32 +23,32 @@ class DoubleLinkedList {
             newNode.prev = this.tail;
             this.tail = newNode;
         }
-        this.length ++;
+        this.length++;
 
         return this;
     }
 
-    pop(){
+    pop() {
         const removedItem = this.tail;
-        if(!this.tail){
+        if (!this.tail) {
             return null;
-        } else if ( this.length === 1) {
+        } else if (this.length === 1) {
             this.head = null;
             this.tail = null;
             removedItem.prev = null;
         }
 
-        this.tail =  this.tail.prev;
+        this.tail = this.tail.prev;
         this.tail.next = null;
         this.length--;
 
         return removedItem;
     }
 
-    shift(){
-        if(!this.head) return undefined;
+    shift() {
+        if (!this.head) return undefined;
         const current = this.head;
-        if(this.length === 1) {
+        if (this.length === 1) {
             this.head = null;
             this.tail = null;
 
@@ -58,7 +58,7 @@ class DoubleLinkedList {
         this.head = this.head.next;
         this.head.prev = null;
         this.length--;
-        
+
         return current;
     }
 
@@ -66,11 +66,11 @@ class DoubleLinkedList {
         const newNode = new Node(val);
         const currentHead = this.head;
 
-        if(!currentHead){
+        if (!currentHead) {
             this.head = newNode;
             this.tail = newNode;
             return this;
-        }else{ 
+        } else {
             this.head.prev = newNode;
             this.newNode.next = this.head;
             this.head = newNode;
@@ -80,12 +80,12 @@ class DoubleLinkedList {
     }
 
     get(index) {
-        if(index < 0 || this.length <= index) return null;
+        if (index < 0 || this.length <= index) return null;
 
-        if(index <= this.length /2){
+        if (index <= this.length / 2) {
             let count = 0;
             let current = this.head;
-            while(count !== index) {
+            while (count !== index) {
                 current = current.next;
                 count++;
             }
@@ -94,7 +94,7 @@ class DoubleLinkedList {
             let count = this.length - 1;
             let current = this.tail;
 
-            while(count !== index) {
+            while (count !== index) {
                 current = current.prev;
                 count--;
             }
@@ -106,18 +106,18 @@ class DoubleLinkedList {
     set(index, val) {
         const current = this.get(index);
 
-        if(!current) {
+        if (!current) {
             return false;
         }
         current.val = val;
-        
+
         return true;
     }
 
     insert(index, val) {
-        if(index < 0 || index >= this.length) return false;
-        if(index === 0) return this.unshift(val);
-        if(index === this.length) return this.push(val);
+        if (index < 0 || index >= this.length) return false;
+        if (index === 0) return this.unshift(val);
+        if (index === this.length) return this.push(val);
 
         const newNode = new Node(val);
         const beforeNode = this.get(index - 1);
@@ -133,9 +133,9 @@ class DoubleLinkedList {
     }
 
     remove(index) {
-        if(index < 0 || index >= this.length) return false;
-        if(index === 0) return this.shift();
-        if(index === this.length -1) return this.pop();
+        if (index < 0 || index >= this.length) return false;
+        if (index === 0) return this.shift();
+        if (index === this.length - 1) return this.pop();
 
         const currentNode = this.get(index - 1);
         const beforeNode = currentNode.prev;
@@ -152,6 +152,6 @@ class DoubleLinkedList {
     }
 }
 
-const list  = new DoubleLinkedList();
+const list = new DoubleLinkedList();
 
 module.exports = list;
