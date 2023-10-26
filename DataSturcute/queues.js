@@ -1,39 +1,39 @@
 const Node = require('../utils/node');
 
 class Queue {
-    constructor() {
-        this.first = null;
-        this.last = null;
-        this.size = 0;
+  constructor() {
+    this.first = null;
+    this.last = null;
+    this.size = 0;
+  }
+
+  unqueue(val) {
+    const newNode = new Node(val);
+
+    if (!this.size) {
+      this.first = newNode;
+      this.last = newNode;
+    } else {
+      this.last.next = newNode
+      this.last = newNode;
     }
 
-    unqueue(val) {
-        const newNode = new Node(val);
+    return this.size++;
+  }
 
-        if (!this.size) {
-            this.first = newNode;
-            this.last = newNode;
-        } else {
-            this.last.next = newNode
-            this.last = newNode;
-        }
+  dequeue() {
+    if (!this.first) return null;
+    const temp = this.first;
 
-        return this.size++;
+    if (this.first === this.last) {
+      this.last = null;
     }
 
-    dequeue() {
-        if (!this.first) return null;
-        const temp = this.first;
+    this.first = this.first.next;
+    this.size--;
 
-        if (this.first === this.last) {
-            this.last = null;
-        }
-
-        this.first = this.first.next;
-        this.size--;
-
-        return temp.value;
-    }
+    return temp.value;
+  }
 }
 
 const queueInstance = new Queue();

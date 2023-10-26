@@ -3,6 +3,7 @@ const doubleLinkedList = require('./DataSturcute/doublyLinkedList');
 const stackInstance = require('./DataSturcute/stack');
 const queueInstance = require('./DataSturcute/queues');
 const binaryTreeInstance = require('./DataSturcute/binarySearchTree');
+const { priorityQueue, maxBinaryHeap } = require('./DataSturcute/binaryHeap');
 
 // ! Use singlyLinkedList methods
 singlyLinkedList.push('1');
@@ -42,3 +43,11 @@ queueInstance.dequeue();
 // ! Use binaryTreeInstance methods
 binaryTreeInstance.insert(9);
 binaryTreeInstance.find(100);
+
+// ! Use maxBinaryHeap methods
+maxBinaryHeap.insert(55);
+maxBinaryHeap.extractMax();
+
+// ! Use priorityQueue methods
+priorityQueue.enqueue(1, 1);
+priorityQueue.enqueue(1, 2);
