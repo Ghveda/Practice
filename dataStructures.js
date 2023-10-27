@@ -3,6 +3,7 @@ const doubleLinkedList = require('./DataSturcute/doublyLinkedList');
 const stackInstance = require('./DataSturcute/stack');
 const queueInstance = require('./DataSturcute/queues');
 const binaryTreeInstance = require('./DataSturcute/binarySearchTree');
+const graphInstance = require('./DataSturcute/graph');
 const { priorityQueue, maxBinaryHeap } = require('./DataSturcute/binaryHeap');
 
 // ! Use singlyLinkedList methods
@@ -51,3 +52,9 @@ maxBinaryHeap.extractMax();
 // ! Use priorityQueue methods
 priorityQueue.enqueue(1, 1);
 priorityQueue.enqueue(1, 2);
+
+// ! Use graphInstance methods
+graphInstance.addVertex(1);
+graphInstance.addVertex(2);
+graphInstance.addEdge(1,2);
+graphInstance.removeEdge(1,2);
